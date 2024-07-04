@@ -13,43 +13,30 @@ function initColorPicker() {
     setColorPickerEventListeners(colorBox, rgb, colorPickers);
 }
 
-function setColorPickerEventListeners(colorBox, rgb, pickerElements){
-
-    for (let i = 0; i < pickerElements.length; i++) {
+function setColorPickerEventListeners(element, colors, pickerElements){
+    let pickerLen = pickerElements.length;
+    for (let i = 0; i < pickerLen; i++) {
         pickerElements[i].addEventListener('change', () => {
-            setBoxBGColor(colorBox, rgb.red.value, rgb.green.value, rgb.blue.value);
-
+            let red = colors.red.value;
+            let green = colors.green.value;
+            let blue = colors.blue.value;
+            setElementBGColor(element, red, green, blue);
+            setDisplayValues(red, green, blue);
         });
     }
-
-
-    /*rgb.red.addEventListener('change', () => {
-        console.log("Red Value: ", rgb.red.value);
-        setBoxBGColor(colorBox, rgb.red.value, rgb.green.value, rgb.blue.value);
-    });
-    rgb.green.addEventListener('change', () => {
-        console.log("Green Value: ", rgb.green.value);
-        setBoxBGColor(colorBox, rgb.red.value, rgb.green.value, rgb.blue.value);
-    });
-    rgb.blue.addEventListener('change', () => {
-        console.log("Blue Value: ", rgb.blue.value);
-        setBoxBGColor(colorBox, rgb.red.value, rgb.green.value, rgb.blue.value);
-    });
-    */
 }
 
-function setBoxBGColor(colorBox, red, green, blue){
-    rgbVal = [red, green, blue].join(',');
-    colorBox.style.backgroundColor = "rgb(" + rgbVal + ")";
+function setElementBGColor(bgElement, red, green, blue){
+    let rgbVal = [red, green, blue].join(',');
+    bgElement.style.backgroundColor = "rgb(" + rgbVal + ")";
 }
 
+function setDisplayValues(red, green, blue){
+    let redVal = document.getElementById("redVal");
+    let greenVal = document.getElementById("greenVal");
+    let blueVal = document.getElementById("blueVal");
 
-
-
-
-
-
-
-
-
-
+    redVal.innerText = red;
+    greenVal.innerText = green;
+    blueVal.innerText = blue;
+}
